@@ -2,11 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-.cormorant-garamond-semibold {
-  font-family: "Cormorant Garamond", serif;
-  font-weight: 600;
+.raleway-uniquifier {
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
   font-style: normal;
 }
+
 .border-green {
   border-color: #83a071;
   border-radius: 4px;

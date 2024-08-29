@@ -1,84 +1,74 @@
 import React, { useState } from "react";
 import Logo from "../../assets/Logo.svg";
-const Navbar = () => {
-  const [iconName, setIconName] = useState("menu");
-  const Menu = () => {
-    let list = document.getElementById("menu-list");
+import Basket from "../../assets/Basket.svg";
 
-    if (iconName === "menu") {
-      setIconName("close");
-      list.classList.add("top-[80px]");
-      list.classList.add("opacity-100");
-    } else {
-      setIconName("menu");
-      list.classList.remove("top-[80px]");
-      list.classList.remove("opacity-100");
-    }
-  };
+const Navbar = () => {
+  const [open, setOpen] = useState(false);
+
+  const Links = [
+    { name: "HOME", link: "/" },
+    { name: "SHOP", link: "/" },
+    { name: "FEATURES", link: "/" },
+    { name: "CONTACT", link: "/" },
+  ];
 
   return (
-    <div>
-      {/* flex flex-wrap items-center justify-between container mx-a0uto px-1 cormorant-garamond-semibold */}
-      <div>
-        <nav className="p-3 bg-custom-orange md:p-3 md:flex md:items-center md:justify-between">
-          <div className="flex justify-between items-center">
-            <img
-              className="px-12 w-36 h-[25px] lg:h-4/5 inline cursor-pointer"
-              src={Logo}
-              alt="Logo"
-            />
+    <div className="raleway-uniquifier shadow-md w-full fixed top-0 left-0 bg-custom-orange">
+      <nav className="md:flex items-center justify-between container mx-auto px-1 py-3">
+        {/* Logo Section */}
+        <div className="flex justify-between items-center w-full md:w-auto">
+          <img
+            className="w-36 h-[25px] lg:h-4/5 cursor-pointer"
+            src={Logo}
+            alt="Logo"
+          />
 
-            <span className="text-3xl cursor-pointer mx-2 md:hidden block">
-              <ion-icon name={iconName} onClick={Menu}></ion-icon>
-            </span>
-          </div>
-          <ul
-            id="menu-list"
-            className=" flex flex-col items-cente float-right md:flex md:flex-row md:items-center z-[-1] md:z-auto md:static md:m-1 absolute w-full left-0 md:w-auto md:h-1 md:py-0 py-4 md:pl-0 px-10 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500 "
+          {/* Menu Icon */}
+          <div
+            onClick={() => setOpen(!open)}
+            className="text-3xl cursor-pointer md:hidden"
           >
-            <li className="md:items-center mx-8 my-6 lg:mx-8 md:mx-4 md:my-0">
+            <ion-icon name={open ? "close" : "menu"}></ion-icon>
+          </div>
+        </div>
+
+        {/* Link Items */}
+        <ul
+          className={`md:flex md:items-center justify-center items-center md:pb-0 absolute md:static md:bg-custom-orange bg-green-800 md:z-auto z-[-1] w-full md:w-auto transition-all duration-500 ease-in ${
+            open
+              ? "top-16 text-white left-0 opacity-100"
+              : "text-black top-16 left-[-400px] opacity-0 md:opacity-100"
+          }`}
+        >
+          {Links.map((link, index) => (
+            <li
+              key={index}
+              className="text-center md:ml-8 text-xl md:text-base lg:text-xl my-7 md:my-0"
+            >
               <a
-                href=""
-                className="md:text-base lg:text-xl text-xl hover:text-product-green duration-500 cormorant-garamond-semibold"
+                href={link.link}
+                className="hover:text-product-green duration-500"
               >
-                HOME
+                {link.name}
               </a>
             </li>
-            <li className="mx-8 my-6 lg:mx-8 md:mx-4 md:my-0">
-              <a
-                href=""
-                className="md:text-base lg:text-xl text-xl hover:text-product-green duration-500 cormorant-garamond-semibold"
-              >
-                SHOP
-              </a>
-            </li>
-            <li className="mx-8 my-6 lg:mx-8 md:mx-4 md:my-0">
-              <a
-                href=""
-                className="md:text-base lg:text-xl text-xl hover:text-product-green duration-500 cormorant-garamond-semibold"
-              >
-                FEATURES
-              </a>
-            </li>
-            <li className="mx-8 my-6 lg:mx-8 md:mx-4 md:my-0">
-              <a
-                href=""
-                className="md:text-base lg:text-xl text-xl hover:text-product-green duration-500 cormorant-garamond-semibold"
-              >
-                CONTANT
-              </a>
-            </li>
-            <li className="mx-8 lg:mx-8 md:mx-4 hidden lg:block">
-              <a href="">
-                <ion-icon name="cart"></ion-icon>
-              </a>
-            </li>
-            <button className="border-green lg:mx-10 lg:py-2 lg:px-4 sm:mr-4 sm:ml-8 sm:py-1 sm:px-2 sm:text-xs border-1 rounded-xl duration-500 cormorant-garamond-semibold">
+          ))}
+          <li className="text-center md:ml-8 my-7 md:my-0">
+            <a href="">
+              <img
+                className="mx-auto w-auto h-auto"
+                src={Basket}
+                alt="Basket-cart"
+              />
+            </a>
+          </li>
+          <li className="text-center md:ml-8 my-7 md:my-0">
+            <button className="border-green px-3 py-1 rounded duration-500">
               LOGIN
             </button>
-          </ul>
-        </nav>
-      </div>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
 };
