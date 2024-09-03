@@ -36,8 +36,8 @@ const Navbar = () => {
         <ul
           className={`md:flex md:items-center justify-center items-center md:pb-0 absolute md:static md:bg-custom-orange bg-green-800 md:z-auto z-[-1] w-full md:w-auto transition-all duration-500 ease-in ${
             open
-              ? "top-16 text-white left-0 opacity-100"
-              : "text-black top-16 left-[-400px] opacity-0 md:opacity-100"
+              ? "top-16 text-white right-0 opacity-100"
+              : "text-black top-16 right-[-400px] opacity-0 md:opacity-100"
           }`}
         >
           {Links.map((link, index) => (
@@ -54,9 +54,9 @@ const Navbar = () => {
             </li>
           ))}
           <li className="text-center md:ml-8 my-7 md:my-0">
-            <a href="">
+            <a href="#">
               <img
-                className="mx-auto w-auto h-auto"
+                className="fill-current mx-auto w-auto h-auto"
                 src={Basket}
                 alt="Basket-cart"
               />
